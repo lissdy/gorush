@@ -9,7 +9,6 @@ import (
 	"github.com/appleboy/gorush/config"
 	"github.com/appleboy/gorush/storage"
 
-	"github.com/appleboy/com/convert"
 	"github.com/dgraph-io/badger/v2"
 )
 
@@ -65,8 +64,10 @@ func (s *Storage) Reset() {
 
 func (s *Storage) setBadger(key string, count int64) {
 	err := s.db.Update(func(txn *badger.Txn) error {
-		value := convert.ToString(count).(string)
-		return txn.Set([]byte(key), []byte(value))
+		//value := convert.ToString(count).(string)
+		//return txn.Set([]byte(key), []byte(value))
+		//value := convert.ToString(count).(string)
+		return txn.Set([]byte(key), []byte(""))
 	})
 	if err != nil {
 		log.Println(s.name, "update error:", err.Error())
